@@ -38,19 +38,26 @@ t.sleep(2)
 //*[@id="newbg_body"]/div[3]/ul/li[3]/a
 //*[@id="newbg_body"]/div[3]/ul/li[4]/a
 //*[@id="newbg_body"]/div[3]/ul/li[5]/a
+
 '''
+
+def path_body(i):
+    return driver.find_element(By.XPATH, f'//*[@id="newbg_body"]/div[3]/ul/li[{i}]/a').click()
 
 
 with codecs.open(file_path, mode='w', encoding='utf-8') as f:
 
-    i = 1
+    i = 2
 
-    while i <= 8:
-        i += 1
+    rank = 1
+
+    while i <= 9:
         
-        def path_page(i):
-            return 'driver.find_element(By.XPATH, //*[@id="newbg_body"]/div[3]/ul/li['+{i}+']/a).click()'
+        if i != 2:
+            path_body(i)
             
+        i += 1
+        t.sleep(1)
         
         # selenium 으로 현재 페이지의 html 소스 코드를 전부 불러오기
         src = driver.page_source
@@ -59,7 +66,7 @@ with codecs.open(file_path, mode='w', encoding='utf-8') as f:
 
         div_list = soup.find_all('div', class_='ss_book_box')
 
-        rank = 1
+        
 
         for div in div_list:
             book_info = div.find_all('li')
