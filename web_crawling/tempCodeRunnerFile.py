@@ -1,1 +1,1 @@
-r
+print(div_list)

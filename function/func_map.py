@@ -12,6 +12,7 @@ print(triple_square(2))
 
 li = [2, 4, 6, 8, 10]
 
+# result = [triple_square for n in li]
 result = list(map(triple_square, li))
 print(result)
 
