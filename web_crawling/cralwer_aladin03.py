@@ -25,23 +25,31 @@ t.sleep(2)
 //*[@id="newbg_body"]/div[3]/ul/li[3]/a
 //*[@id="newbg_body"]/div[3]/ul/li[4]/a
 //*[@id="newbg_body"]/div[3]/ul/li[5]/a
+
 '''
+
+def path_body(i):
+    return driver.find_element(By.XPATH, f'//*[@id="newbg_body"]/div[3]/ul/li[{i}]/a').click()
 
 
 with codecs.open(file_path, mode='w', encoding='utf-8') as f:
 
-    cur_page_num = 2 # 현재 페이지 번호
-    target_page_num = 9 # 목적지 페이지 번호
-    rank = 1 # 순위
+    i = 1
 
-    while cur_page_num <= target_page_num:
-
+    while i <= 8:
+        i += 1
+        
+        def path_page(i):
+            return 'driver.find_element(By.XPATH, //*[@id="newbg_body"]/div[3]/ul/li['+{i}+']/a).click()'
+            
+        
         # selenium 으로 현재 페이지의 html 소스 코드를 전부 불러오기
         src = driver.page_source
         soup = BeautifulSoup(src, 'html.parser')
 
         div_list = soup.find_all('div', class_='ss_book_box')
-        # div_list = soup.select('div.ss_book_box') -> 가능
+
+        rank = 1
 
         for div in div_list:
             book_info = div.find_all('li')
